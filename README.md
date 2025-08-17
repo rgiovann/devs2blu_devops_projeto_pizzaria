@@ -1,4 +1,4 @@
-# PENDENCIAS TÉCNICAS
+# PENDENCIAS TÉCNICAS [ALTERACAO README 17.14 17.08.2025 - CHECK AUTO DEPLOY FUNCIONANDO]
 Prezado ilustre DevOps, Não consegui criar o DockerFile para o projeto backend, pode me ajudar?
 
 Objetivos:
