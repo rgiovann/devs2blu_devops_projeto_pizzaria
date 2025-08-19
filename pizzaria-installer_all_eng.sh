@@ -297,11 +297,11 @@ run_initial_deploy() {
     log "INFO" "Running initial deploy..."
 
     # Run initial deploy
-    if "$INSTALL_DIR/scripts/deploy.sh"; then
-        log "SUCCESS" "Initial deploy executed successfully"
+	if bash "$INSTALL_DIR/scripts/deploy.sh"; then
+       log "SUCCESS" "Initial deploy executed successfully"
     else
-        log "ERROR" "Initial deploy failed"
-        exit 1
+       log "ERROR" "Initial deploy failed"
+       exit 1
     fi
 }
 
@@ -356,3 +356,4 @@ main() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     main "$@"
 fi
+
