@@ -282,13 +282,15 @@ setup_crontab() {
     # Crontab entry
     local cron_entry="*/5 * * * * $INSTALL_DIR/scripts/deploy.sh >> $INSTALL_DIR/logs/cron.log 2>&1"
 
-    # Check if already exists
-    if crontab -l 2>/dev/null | grep -Fq "$INSTALL_DIR/scripts/deploy.sh"; then
+    # Add entry preserving existing crontab (ignore error if does not exist)
+    existing_cron=$(crontab -l 2>/dev/null || true)
+
+    # Verifica se a entrada já existe
+    if echo "$existing_cron" | grep -Fq "$INSTALL_DIR/scripts/deploy.sh"; then
         log "INFO" "Crontab already configured"
     else
-        # Add entry preserving existing crontab
-        (crontab -l 2>/dev/null; echo "$cron_entry") | crontab -
-        log "SUCCESS" "Crontab configured - execution every 5 minutes"
+       (echo "$existing_cron"; echo "*/5 * * * * $INSTALL_DIR/scripts/deploy.sh >> $INSTALL_DIR/logs/cron.log 2>&1") | crontab -
+       log "SUCCESS" "Crontab configured - execution every 5 minutes"
     fi
 }
 
@@ -356,4 +358,5 @@ main() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     main "$@"
 fi
+
 
