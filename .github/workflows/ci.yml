@@ -9,4 +9,6 @@ jobs:
  - name: checagem
  run: |
   echo "Fazendo a checagem"
+  echo "Para fazer o commit"
+
 
