@@ -1,0 +1,12 @@
+on:
+ push:
+ branches: [ main ]
+jobs:
+ check:
+ runs-on: ubuntu-latest
+
+ steps:
+ - name: checagem
+ run: |
+  echo "Fazendo a checagem"
+
