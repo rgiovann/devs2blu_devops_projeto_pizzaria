@@ -1,5 +1,5 @@
 ---
-name: 01-AWS-provisioning
+name: Infra AWS e deploy Ansible
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 jobs:
-  terraform:
+  infra-e-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
@@ -30,10 +30,18 @@ jobs:
         run: |
           cd infra/terraform
           terraform apply -auto-approve
-      - name: Disparar workflow do Ansible
-        uses: peter-evans/workflow-dispatch@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          workflow: ansible-deploy.yml
-          ref: main
+      - name: Instalar Ansible e dependências
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip jq
+          pip3 install ansible boto3 botocore
+          ansible-galaxy collection install amazon.aws
+      - name: Configurar chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PEM_KEY_PIZZARIA }}" > ~/.ssh/leopoldo-key-pizzaria
+          chmod 600 ~/.ssh/leopoldo-key-pizzaria
+      - name: Executar playbook
+        run: |
+          cd infra/ansible
+          ansible-playbook -i inventory/aws_ec2.yml playbooks/deploy-app.yml -v
