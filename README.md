@@ -16,7 +16,7 @@ Um sistema completo para gerenciamento de pizzaria com frontend em HTML/CSS/Java
 
 ## Visão Geral
 
-O Pizzaria App é uma aplicação web que permite aos clientes visualizar o cardápio de pizzas, adicionar itens ao carrinho e realizar pedidos. A aplicação é composta por:
+O Pizzaria App é uma aplicação web que permite aos clientes visualizarem o cardápio de pizzas, adicionar itens ao carrinho e realizar pedidos. A aplicação é composta por:
 
 -   **Frontend**: Interface de usuário responsiva desenvolvida com HTML, CSS e JavaScript puro
 -   **Backend**: API RESTful desenvolvida com Python e Flask
