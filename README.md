@@ -1,15 +1,14 @@
-# PENDENCIAS TÉCNICAS [ALTERACAO README 17.14 18.15.2025 - CHECK AUTO DEPLOY FUNCIONANDO]
 Prezado ilustre DevOps, Não consegui criar o DockerFile para o projeto backend, pode me ajudar?
 
 Objetivos:
-- Criar o Dockerfile para o projeto Backend 
-- Usar imagem modelo python:3.9 ou python:3.9-slim
-- Instalar os pacotes do python necessários dentro da imagem
-- Expor porta 5000
-- *O comando para executar é:* python app.py
 
-Depois monta um docker-compose.yml ok? 
+-   Criar o Dockerfile para o projeto Backend
+-   Usar imagem modelo python:3.9 ou python:3.9-slim
+-   Instalar os pacotes do python necessários dentro da imagem
+-   Expor porta 5000
+-   _O comando para executar é:_ python app.py
 
+Depois monta um docker-compose.yml ok?
 
 # Pizzaria App
 
@@ -19,9 +18,9 @@ Um sistema completo para gerenciamento de pizzaria com frontend em HTML/CSS/Java
 
 O Pizzaria App é uma aplicação web que permite aos clientes visualizar o cardápio de pizzas, adicionar itens ao carrinho e realizar pedidos. A aplicação é composta por:
 
-- **Frontend**: Interface de usuário responsiva desenvolvida com HTML, CSS e JavaScript puro
-- **Backend**: API RESTful desenvolvida com Python e Flask
-- **Docker**: Containers para facilitar a implantação e execução do sistema
+-   **Frontend**: Interface de usuário responsiva desenvolvida com HTML, CSS e JavaScript puro
+-   **Backend**: API RESTful desenvolvida com Python e Flask
+-   **Docker**: Containers para facilitar a implantação e execução do sistema
 
 ## Estrutura do Projeto
 
@@ -43,36 +42,36 @@ pizzaria-app/
 
 ### Frontend
 
-- **Visualização do Cardápio**: Exibição de pizzas com imagens, descrições e preços
-- **Carrinho de Compras**: Adição e remoção de itens com atualização dinâmica
-- **Finalização de Pedido**: Envio do pedido para o backend
-- **Interface Responsiva**: Design adaptável para diferentes dispositivos
-- **Integração com API**: Comunicação com o backend para obter dados e enviar pedidos
+-   **Visualização do Cardápio**: Exibição de pizzas com imagens, descrições e preços
+-   **Carrinho de Compras**: Adição e remoção de itens com atualização dinâmica
+-   **Finalização de Pedido**: Envio do pedido para o backend
+-   **Interface Responsiva**: Design adaptável para diferentes dispositivos
+-   **Integração com API**: Comunicação com o backend para obter dados e enviar pedidos
 
 ### Backend
 
-- **API RESTful**: Endpoints para gerenciamento de pizzas e pedidos
-- **Dados Simulados**: Informações de pizzas e pedidos armazenados em memória
-- **CORS Habilitado**: Permite requisições do frontend
-- **Validação de Dados**: Verificação dos dados recebidos nas requisições
+-   **API RESTful**: Endpoints para gerenciamento de pizzas e pedidos
+-   **Dados Simulados**: Informações de pizzas e pedidos armazenados em memória
+-   **CORS Habilitado**: Permite requisições do frontend
+-   **Validação de Dados**: Verificação dos dados recebidos nas requisições
 
 ## Endpoints da API
 
 ### Pizzas
 
-- `GET /api/pizzas`: Retorna a lista de todas as pizzas disponíveis
-- `GET /api/pizzas/<id>`: Retorna os detalhes de uma pizza específica
+-   `GET /api/pizzas`: Retorna a lista de todas as pizzas disponíveis
+-   `GET /api/pizzas/<id>`: Retorna os detalhes de uma pizza específica
 
 ### Pedidos
 
-- `GET /api/pedidos`: Retorna a lista de todos os pedidos
-- `POST /api/pedidos`: Cria um novo pedido
-- `PUT /api/pedidos/<id>/status`: Atualiza o status de um pedido
+-   `GET /api/pedidos`: Retorna a lista de todos os pedidos
+-   `POST /api/pedidos`: Cria um novo pedido
+-   `PUT /api/pedidos/<id>/status`: Atualiza o status de um pedido
 
 ## Requisitos
 
-- Docker
-- Docker Compose
+-   Docker
+-   Docker Compose
 
 ## Executando o Projeto
 
@@ -121,11 +120,11 @@ python app.py
 
 ```json
 {
-  "id": 1,
-  "nome": "Margherita",
-  "ingredientes": "Molho de tomate, mussarela, manjericão",
-  "preco": 35.90,
-  "imagem": "https://example.com/margherita.jpg"
+    "id": 1,
+    "nome": "Margherita",
+    "ingredientes": "Molho de tomate, mussarela, manjericão",
+    "preco": 35.9,
+    "imagem": "https://example.com/margherita.jpg"
 }
 ```
 
@@ -133,19 +132,19 @@ python app.py
 
 ```json
 {
-  "id": 1,
-  "data": "2025-07-18 20:00:00",
-  "itens": [
-    {
-      "pizza_id": 1,
-      "quantidade": 2
-    }
-  ],
-  "cliente": "Nome do Cliente",
-  "endereco": "Endereço de Entrega",
-  "telefone": "(99) 99999-9999",
-  "status": "Recebido",
-  "total": 71.80
+    "id": 1,
+    "data": "2025-07-18 20:00:00",
+    "itens": [
+        {
+            "pizza_id": 1,
+            "quantidade": 2
+        }
+    ],
+    "cliente": "Nome do Cliente",
+    "endereco": "Endereço de Entrega",
+    "telefone": "(99) 99999-9999",
+    "status": "Recebido",
+    "total": 71.8
 }
 ```
 
@@ -155,16 +154,16 @@ python app.py
 
 O frontend é servido por um servidor Nginx que também atua como proxy reverso para a API:
 
-- Porta: 8080 (host) -> 80 (container)
-- Configuração: Redireciona requisições para `/api` para o serviço backend
+-   Porta: 8080 (host) -> 80 (container)
+-   Configuração: Redireciona requisições para `/api` para o serviço backend
 
 ### Backend (Python/Flask)
 
 O backend executa uma aplicação Flask:
 
-- Porta: 5001 (host) -> 5000 (container)
-- Ambiente: Desenvolvimento (debug ativado)
-- Dependências: Flask, Flask-CORS, etc.
+-   Porta: 5001 (host) -> 5000 (container)
+-   Ambiente: Desenvolvimento (debug ativado)
+-   Dependências: Flask, Flask-CORS, etc.
 
 ## Detalhes Técnicos
 
@@ -172,17 +171,17 @@ O backend executa uma aplicação Flask:
 
 O frontend é uma aplicação web simples construída com HTML, CSS e JavaScript puro. Ele utiliza:
 
-- **HTML5**: Para estruturar o conteúdo da página
-- **CSS3**: Para estilização e layout responsivo
-- **JavaScript (ES6+)**: Para interatividade e comunicação com a API
-- **Fetch API**: Para realizar requisições HTTP ao backend
-- **Nginx**: Como servidor web para servir os arquivos estáticos
+-   **HTML5**: Para estruturar o conteúdo da página
+-   **CSS3**: Para estilização e layout responsivo
+-   **JavaScript (ES6+)**: Para interatividade e comunicação com a API
+-   **Fetch API**: Para realizar requisições HTTP ao backend
+-   **Nginx**: Como servidor web para servir os arquivos estáticos
 
 #### Estrutura do Frontend
 
-- **index.html**: Contém toda a estrutura da página, estilos CSS e código JavaScript
-- **Estilo**: Definido diretamente no cabeçalho do HTML usando tags `<style>`
-- **JavaScript**: Definido no final do HTML usando tags `<script>`
+-   **index.html**: Contém toda a estrutura da página, estilos CSS e código JavaScript
+-   **Estilo**: Definido diretamente no cabeçalho do HTML usando tags `<style>`
+-   **JavaScript**: Definido no final do HTML usando tags `<script>`
 
 #### Fluxo de Dados no Frontend
 
@@ -195,15 +194,15 @@ O frontend é uma aplicação web simples construída com HTML, CSS e JavaScript
 
 O backend é uma API RESTful construída com Python e Flask. Ele utiliza:
 
-- **Python 3.9**: Como linguagem de programação
-- **Flask**: Como framework web
-- **Flask-CORS**: Para habilitar CORS (Cross-Origin Resource Sharing)
-- **JSON**: Para serialização e deserialização de dados
+-   **Python 3.9**: Como linguagem de programação
+-   **Flask**: Como framework web
+-   **Flask-CORS**: Para habilitar CORS (Cross-Origin Resource Sharing)
+-   **JSON**: Para serialização e deserialização de dados
 
 #### Estrutura do Backend
 
-- **app.py**: Contém toda a lógica da aplicação, incluindo rotas, controladores e dados simulados
-- **requirements.txt**: Lista as dependências Python necessárias
+-   **app.py**: Contém toda a lógica da aplicação, incluindo rotas, controladores e dados simulados
+-   **requirements.txt**: Lista as dependências Python necessárias
 
 #### Fluxo de Dados no Backend
 
@@ -216,9 +215,9 @@ O backend é uma API RESTful construída com Python e Flask. Ele utiliza:
 
 A aplicação é containerizada usando Docker e orquestrada com Docker Compose:
 
-- **Dockerfile (Frontend)**: Define como construir a imagem do frontend usando Nginx
-- **Dockerfile (Backend)**: Define como construir a imagem do backend usando Python
-- **docker-compose.yml**: Define como os serviços devem ser executados e como se comunicam
+-   **Dockerfile (Frontend)**: Define como construir a imagem do frontend usando Nginx
+-   **Dockerfile (Backend)**: Define como construir a imagem do backend usando Python
+-   **docker-compose.yml**: Define como os serviços devem ser executados e como se comunicam
 
 #### Rede Docker
 
@@ -247,9 +246,9 @@ pizzas = [
 
 O frontend é construído com HTML, CSS e JavaScript puros, facilitando a personalização:
 
-- Estilo: Edite as regras CSS no cabeçalho do arquivo `index.html`
-- Comportamento: Modifique as funções JavaScript no final do arquivo `index.html`
-- Estrutura: Altere a estrutura HTML conforme necessário
+-   Estilo: Edite as regras CSS no cabeçalho do arquivo `index.html`
+-   Comportamento: Modifique as funções JavaScript no final do arquivo `index.html`
+-   Estrutura: Altere a estrutura HTML conforme necessário
 
 ### Modificando o Backend
 
@@ -261,13 +260,13 @@ Para adicionar novas funcionalidades ao backend:
 
 ## Considerações de Segurança
 
-- A aplicação atual não implementa autenticação ou autorização
-- Em um ambiente de produção, seria necessário adicionar:
-  - Autenticação de usuários
-  - Autorização baseada em funções
-  - Validação mais rigorosa de entrada
-  - HTTPS para criptografar as comunicações
-  - Proteção contra ataques comuns (CSRF, XSS, etc.)
+-   A aplicação atual não implementa autenticação ou autorização
+-   Em um ambiente de produção, seria necessário adicionar:
+    -   Autenticação de usuários
+    -   Autorização baseada em funções
+    -   Validação mais rigorosa de entrada
+    -   HTTPS para criptografar as comunicações
+    -   Proteção contra ataques comuns (CSRF, XSS, etc.)
 
 ## Considerações de Produção
 
@@ -289,16 +288,18 @@ Para um ambiente de produção, considere:
 ### Problemas Comuns
 
 1. **O frontend não consegue acessar o backend**:
-   - Verifique se ambos os containers estão em execução (`docker ps`)
-   - Verifique se o backend está escutando na porta correta
-   - Verifique se o proxy reverso no Nginx está configurado corretamente
+
+    - Verifique se ambos os containers estão em execução (`docker ps`)
+    - Verifique se o backend está escutando na porta correta
+    - Verifique se o proxy reverso no Nginx está configurado corretamente
 
 2. **Erros ao construir as imagens Docker**:
-   - Verifique se os Dockerfiles estão corretos
-   - Verifique se todas as dependências estão listadas nos arquivos de requisitos
+
+    - Verifique se os Dockerfiles estão corretos
+    - Verifique se todas as dependências estão listadas nos arquivos de requisitos
 
 3. **Problemas de CORS**:
-   - Verifique se o Flask-CORS está configurado corretamente no backend
+    - Verifique se o Flask-CORS está configurado corretamente no backend
 
 ### Logs
 
