@@ -8,6 +8,10 @@
     repo_url: https://github.com/rgiovann/devs2blu_devops_projeto_pizzaria.git
     repo_branch: main
   tasks:
+    - name: Atualizar cache do apt
+      apt:
+        update_cache: yes
+      become: yes
     - name: Instalar Git
       apt:
         name: git
