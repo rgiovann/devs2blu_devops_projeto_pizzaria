@@ -31,8 +31,8 @@ jobs:
       - name: Configurar chave SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.PEM_KEY_PIZZARIA }}" > ~/.ssh/leopoldo-key.pem
-          chmod 600 ~/.ssh/leopoldo-key.pem
+          echo "${{ secrets.PEM_KEY_PIZZARIA }}" > ~/.ssh/leopoldo-key-pizzaria
+          chmod 600 ~/.ssh/leopoldo-key-pizzaria
       - name: Executar playbook
         run: |
           cd infra/ansible
