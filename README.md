@@ -8,7 +8,7 @@ Objetivos:
 -   Expor porta 5000
 -   _O comando para executar é:_ python app.py
 
-Depois monta um docker-compose.yml ok?
+Depois deve montar um docker-compose.yml ok ?
 
 # Pizzaria App
 
