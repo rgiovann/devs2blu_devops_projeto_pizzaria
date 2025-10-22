@@ -1,52 +1,44 @@
 ---
-# Playbook para configurar servidor (roda apenas 1x ou após reprovisionar)
 - name: Configurar servidor com Docker
   hosts: all
   become: true
   gather_facts: true
-
   tasks:
     - name: Atualizar cache do APT
       apt:
         update_cache: yes
         cache_valid_time: 3600
-
     - name: Instalar pacotes base
       apt:
-          name:
+        name:
           - docker.io
           - docker-compose
           - git
           - curl
           - python3-pip
         state: present
-
     - name: Iniciar e habilitar Docker
       systemd:
         name: docker
         state: started
         enabled: true
-
     - name: Adicionar usuario admin ao grupo docker
       user:
         name: admin
         groups: docker
         append: true
-
     - name: Criar diretorio da aplicacao
       file:
         path: /opt/pizzaria/app
         state: directory
         owner: admin
         group: admin
-        mode: '0755'
-
+        mode: "0755"
     - name: Verificar se Docker esta funcional
       command: docker ps
       changed_when: false
       register: docker_test
-
     - name: Mostrar status do Docker
       debug:
-        msg: "OK Docker configurado com sucesso"
+        msg: OK Docker configurado com sucesso
       when: docker_test.rc == 0
