@@ -1,0 +1,39 @@
+---
+name: 02 - Deploy com Ansible
+on:
+  workflow_run:
+    workflows:
+      - 01 - Provisionar Infra AWS
+    types:
+      - completed
+  workflow_dispatch: null
+permissions:
+  contents: read
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Configurar credenciais AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Instalar Ansible e dependências
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip jq
+          pip3 install ansible boto3 botocore
+          ansible-galaxy collection install amazon.aws
+      - name: Configurar chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PEM_KEY_PIZZARIA }}" > ~/.ssh/leopoldo-key.pem
+          chmod 600 ~/.ssh/leopoldo-key.pem
+      - name: Executar playbook
+        run: |
+          cd infra/ansible
+          ansible-playbook -i inventory/aws_ec2.yml playbooks/deploy-app.yml -v
