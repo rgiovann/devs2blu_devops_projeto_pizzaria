@@ -4,7 +4,7 @@ COPY ./public /usr/share/nginx/html
 
 # Configure nginx for SPA
 RUN echo 'server { \
-    listen 80; \
+    listen 8080; \
     server_name _; \
     root /usr/share/nginx/html; \
     index index.html; \
