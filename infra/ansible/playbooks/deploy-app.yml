@@ -17,13 +17,21 @@
         name: git
         state: present
       become: yes
+    - name: Criar diretório da aplicação
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: admin
+        group: admin
+        mode: "0755"
+      become: yes
     - name: Clonar ou atualizar repositório
       git:
         repo: "{{ repo_url }}"
         dest: "{{ app_dir }}"
         version: "{{ repo_branch }}"
         force: true
-      register: git_result
+      become: yes
     - name: Mostrar commit atual
       debug:
         msg: "Deploy do commit: {{ git_result.after }}"
@@ -32,14 +40,17 @@
       args:
         chdir: "{{ app_dir }}"
       ignore_errors: true
+      become: yes
     - name: Build das imagens Docker
       command: docker-compose build --pull
       args:
         chdir: "{{ app_dir }}"
+      become: yes
     - name: Iniciar containers
       command: docker-compose up -d
       args:
         chdir: "{{ app_dir }}"
+      become: yes
     - name: Aguardar aplicação ficar disponível
       uri:
         url: http://localhost:8080/actuator/health
@@ -55,6 +66,7 @@
         chdir: "{{ app_dir }}"
       register: containers_status
       changed_when: false
+      become: yes
     - name: Mostrar containers rodando
       debug:
         msg: "{{ containers_status.stdout_lines }}"
