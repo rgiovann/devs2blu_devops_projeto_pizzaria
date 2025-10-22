@@ -32,6 +32,7 @@
         version: "{{ repo_branch }}"
         force: true
       become: yes
+      register: git_result
     - name: Mostrar commit atual
       debug:
         msg: "Deploy do commit: {{ git_result.after }}"
@@ -59,7 +60,7 @@
       until: health_check.status == 200
       retries: 30
       delay: 2
-      ignore_errors: true
+      failed_when: health_check.status != 200
     - name: Verificar status dos containers
       command: docker-compose ps
       args:

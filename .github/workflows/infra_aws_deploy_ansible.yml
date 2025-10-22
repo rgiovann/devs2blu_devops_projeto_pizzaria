@@ -41,6 +41,10 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.PEM_KEY_PIZZARIA }}" > ~/.ssh/leopoldo-key-pizzaria
           chmod 600 ~/.ssh/leopoldo-key-pizzaria
+      - name: Executar playbook Docker
+        run: |
+          cd infra/ansible
+          ansible-playbook -i inventory/aws_ec2.yml playbooks/setup-docker.yml -v
       - name: Executar playbook
         run: |
           cd infra/ansible
