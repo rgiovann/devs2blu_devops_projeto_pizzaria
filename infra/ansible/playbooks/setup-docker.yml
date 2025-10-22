@@ -27,13 +27,6 @@
         name: admin
         groups: docker
         append: true
-    - name: Criar diretorio da aplicacao
-      file:
-        path: /opt/pizzaria/app
-        state: directory
-        owner: admin
-        group: admin
-        mode: "0755"
     - name: Verificar se Docker esta funcional
       command: docker ps
       changed_when: false
